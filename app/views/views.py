@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request, render_template
+from app.repository.repository import getWeather
 
 
 views = Blueprint("views",__name__)
@@ -9,4 +10,5 @@ def reactPage():
 
 @views.route('/weather')
 def showWeather():
-    return 'get weather'
+    city = request.args.get("q")
+    return getWeather(city)
